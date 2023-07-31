@@ -9,6 +9,11 @@ body {
   flex-direction: column;
   background-color: #e9f6f8;
 }
+#root {
+  flex: 1;
+  display: flex; /*imparte elementele proportional*/
+  flex-direction: column;
+}
 header {
   padding: 0px;
   display: flex;
