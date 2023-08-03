@@ -1,5 +1,56 @@
+function TeamRow({ id, promotion, members, name, url }) {
+  // const displayUrl = url.startsWith("https://github.com/") ? url.substring(19) : url;
+  return (
+    <tr>
+      <td style={{ textAlign: "center" }}>
+        <input type="checkbox" name="selected" value="${id}" />
+      </td>
+      <td>{promotion}</td>
+      <td>{members}</td>
+      <td>{name}</td>
+      <td>
+        <a href="${url}" target="_blank">
+          {url}
+        </a>
+      </td>
+      <td>
+        <button type="button" data-id="${id}" className="action-btn edit-btn">
+          📝
+        </button>
+        <button type="button" data-id="${id}" className="action-btn remove-btn">
+          🗑
+        </button>
+      </td>
+    </tr>
+  );
+}
+
 export function TeamsTable(props) {
   console.warn(props);
+
+  const teams = [
+    {
+      id: "toze8j1610313009673",
+      promotion: "html",
+      members: "Nicolae Matei, HTML",
+      name: "Web Presentation",
+      url: "https://github.com/nmatei/web-intro-presentation"
+    },
+    {
+      id: "ezabnf1630345987541",
+      promotion: "css",
+      members: "Nicolae",
+      name: "Names",
+      url: "https://github.com/nmatei/nmatei.github.io"
+    },
+    {
+      id: "86mq81630347385708",
+      promotion: "js",
+      members: "Matei, Andrei",
+      name: "JS/HTML/CSS Quiz",
+      url: "https://github.com/nmatei/simple-quiz-app"
+    }
+  ];
   return (
     <form id="teamsForm" action="" method="get" className={props.loading == true ? "loading-mask" : ""}>
       <table id="teamsTable">
@@ -23,7 +74,18 @@ export function TeamsTable(props) {
             <th></th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {teams.map(team => (
+            <TeamRow
+              key={team.id}
+              id={team.id}
+              promotion={team.promotion}
+              members={team.members}
+              name={team.name}
+              url={team.url}
+            />
+          ))}
+        </tbody>
         <tfoot>
           <tr>
             <td>&nbsp;</td>
@@ -52,4 +114,8 @@ export function TeamsTable(props) {
       </table>
     </form>
   );
+}
+
+export function TeamsTableWrapper() {
+  return <TeamsTable loading={false} />;
 }
