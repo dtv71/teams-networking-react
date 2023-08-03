@@ -25,7 +25,12 @@ function TeamRow({ id, promotion, members, name, url }) {
   );
 }
 
-export function TeamsTable(props) {
+type Props = {
+  loading: boolean;
+  teams: any[];
+};
+
+export function TeamsTable(props: Props) {
   console.warn(props);
 
   return (
@@ -125,7 +130,7 @@ export function TeamsTableWrapper() {
       <br />
       <TeamsTable loading={true} teams={teams} />
       <br /> */}
-      <TeamsTable loading={false} teams={teams} />
+      <TeamsTable loading={false} teams={[]} />
     </>
   );
 }
