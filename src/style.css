@@ -15,13 +15,6 @@ body {
   flex-direction: column;
 }
 
-#job-title {
-  color: #ffffff;
-  margin: 5px 0;
-  font-weight: 100;
-  font-size: 1.2em;
-}
-
 #my-picture {
   padding: 5px;
   width: 108px;

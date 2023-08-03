@@ -23,3 +23,10 @@ header h1 {
   align-items: center;
   background: linear-gradient(45deg, #0798abfa, transparent);
 }
+
+#job-title {
+  color: #ffffff;
+  margin: 5px 0;
+  font-weight: 100;
+  font-size: 1.2em;
+}
