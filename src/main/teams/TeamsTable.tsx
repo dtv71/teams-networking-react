@@ -1,4 +1,17 @@
-function TeamRow({ id, promotion, members, name, url }) {
+type Props = {
+  loading: boolean;
+  teams: any[];
+};
+
+type Team = {
+  id: string;
+  promotion: string;
+  members: string;
+  name: string;
+  url: string;
+};
+
+function TeamRow({ id, promotion, members, name, url }: Team) {
   // const displayUrl = url.startsWith("https://github.com/") ? url.substring(19) : url;
   return (
     <tr>
@@ -24,11 +37,6 @@ function TeamRow({ id, promotion, members, name, url }) {
     </tr>
   );
 }
-
-type Props = {
-  loading: boolean;
-  teams: any[];
-};
 
 export function TeamsTable(props: Props) {
   console.warn(props);
@@ -99,29 +107,7 @@ export function TeamsTable(props: Props) {
 }
 
 export function TeamsTableWrapper() {
-  const teams = [
-    {
-      id: "toze8j1610313009673",
-      promotion: "html",
-      members: "Nicolae Matei, HTML",
-      name: "Web Presentation",
-      url: "https://github.com/nmatei/web-intro-presentation"
-    },
-    {
-      id: "ezabnf1630345987541",
-      promotion: "css",
-      members: "Nicolae",
-      name: "Names",
-      url: "https://github.com/nmatei/nmatei.github.io"
-    },
-    {
-      id: "86mq81630347385708",
-      promotion: "js",
-      members: "Matei, Andrei",
-      name: "JS/HTML/CSS Quiz",
-      url: "https://github.com/nmatei/simple-quiz-app"
-    }
-  ];
+  const teams = [];
   return (
     <>
       {/* <TeamsTable loading={false} teams={[]} />
@@ -130,7 +116,7 @@ export function TeamsTableWrapper() {
       <br />
       <TeamsTable loading={true} teams={teams} />
       <br /> */}
-      <TeamsTable loading={false} teams={[]} />
+      <TeamsTable loading={false} teams={teams} />
     </>
   );
 }
