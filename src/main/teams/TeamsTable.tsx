@@ -144,6 +144,7 @@ type Actions = {
   startEdit(team: Team): void;
   inputChange(name: keyof Team, value: string): void;
   save(): void;
+  reset(): void;
 };
 export function TeamsTable(props: Props & Actions) {
   console.warn(props);
@@ -157,6 +158,10 @@ export function TeamsTable(props: Props & Actions) {
       onSubmit={e => {
         e.preventDefault();
         props.save();
+      }}
+      onReset={e => {
+        e.preventDefault();
+        props.reset();
       }}
     >
       <table id="teamsTable">
@@ -292,6 +297,7 @@ export class TeamsTableWrapper extends React.Component<WrapperProps, State> {
             this.setState({ team: getEmptyTeam() });
           }
         }}
+        reset={() => this.setState({ team: getEmptyTeam() })}
       />
     );
   }
