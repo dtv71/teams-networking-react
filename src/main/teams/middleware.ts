@@ -1,9 +1,9 @@
 import { Team } from "./models";
 
-let loadUrl = "teams.json";
+let loadUrl = "http://localhost:3000/teams-json";
 
 if (window.location.host === "dtv71.github.io") {
-  loadUrl = "https://nmatei.github.io/teams-networking/data/teams.json";
+  loadUrl = "teams.json";
 }
 export function loadTeamsRequest(): Promise<Team[]> {
   return fetch(loadUrl, {
