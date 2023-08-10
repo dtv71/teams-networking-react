@@ -1,6 +1,6 @@
 import { Team } from "./models";
 
-let loadUrl = "http://localhost:3000/teams-json";
+let loadUrl = "teams.json";
 
 if (window.location.host === "dtv71.github.io") {
   loadUrl = "https://nmatei.github.io/teams-networking/data/teams.json";
