@@ -1,12 +1,12 @@
 import { Team } from "./models";
 
-let loadurl = "http://localhost:3000/teams-json";
+let loadUrl = "http://localhost:3000/teams-json";
 
 if (window.location.host === "dtv71.github.io") {
-  loadurl = "https://nmatei.github.io/teams-networking/data/teams.json";
+  loadUrl = "https://nmatei.github.io/teams-networking/data/teams.json";
 }
 export function loadTeamsRequest(): Promise<Team[]> {
-  return fetch("http://localhost:3000/teams-json", {
+  return fetch(loadUrl, {
     method: "GET",
     headers: {
       "Content-Type": "application/json"
@@ -15,7 +15,7 @@ export function loadTeamsRequest(): Promise<Team[]> {
 }
 
 export function deleteTeamRequest(id: string, callback?: (status: any) => void) {
-  return fetch("http://localhost:3000/teams-json/delete", {
+  return fetch(loadUrl + "/delete", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json"
@@ -32,7 +32,7 @@ export function deleteTeamRequest(id: string, callback?: (status: any) => void) 
 }
 
 export function updateTeamRequest(team) {
-  return fetch("http://localhost:3000/teams-json/update", {
+  return fetch(loadUrl + "/update", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
@@ -42,7 +42,7 @@ export function updateTeamRequest(team) {
 }
 
 export function createTeamRequest(team) {
-  return fetch("http://localhost:3000/teams-json/create", {
+  return fetch(loadUrl + "/create", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
