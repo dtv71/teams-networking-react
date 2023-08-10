@@ -1,16 +1,10 @@
 import React from "react";
 import { deleteTeamRequest, loadTeamsRequest, updateTeamRequest } from "./middleware";
+import { Team } from "./models";
 
 function getEmptyTeam() {
   return { id: "", promotion: "", members: "", name: "", url: "" };
 }
-type Team = {
-  id: string;
-  promotion: string;
-  members: string;
-  name: string;
-  url: string;
-};
 
 type RowProps = {
   team: Team;
