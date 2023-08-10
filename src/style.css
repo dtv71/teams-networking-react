@@ -50,6 +50,7 @@ h1 {
 #teamsTable {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 #teamsTable th,
 #teamsTable td {
