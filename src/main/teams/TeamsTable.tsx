@@ -1,5 +1,5 @@
 import React from "react";
-import { deleteTeamRequest, loadTeamsRequest, updateTeamRequest } from "./middleware";
+import { createTeamRequest, deleteTeamRequest, loadTeamsRequest, updateTeamRequest } from "./middleware";
 import { Team } from "./models";
 
 function getEmptyTeam() {
@@ -200,16 +200,56 @@ export function TeamsTable(props: Props & Actions) {
           <tr>
             <td>&nbsp;</td>
             <td>
-              <input type="text" name="promotion" placeholder="Enter Promotion" required disabled={!!props.team.id} />
+              <input
+                type="text"
+                name="promotion"
+                value={props.team.id ? "" : props.team.promotion}
+                placeholder="Enter Promotion"
+                required
+                disabled={!!props.team.id}
+                onChange={e => {
+                  props.inputChange("promotion", e.target.value);
+                }}
+              />
             </td>
             <td>
-              <input type="text" name="members" placeholder="Enter Members" required disabled={!!props.team.id} />
+              <input
+                type="text"
+                name="members"
+                value={props.team.id ? "" : props.team.members}
+                placeholder="Enter members"
+                required
+                disabled={!!props.team.id}
+                onChange={e => {
+                  props.inputChange("members", e.target.value);
+                }}
+              />
             </td>
             <td>
-              <input type="text" name="name" placeholder="Enter Project name" required disabled={!!props.team.id} />
+              <input
+                type="text"
+                name="name"
+                value={props.team.id ? "" : props.team.name}
+                placeholder="Enter Name"
+                required
+                disabled={!!props.team.id}
+                onChange={e => {
+                  props.inputChange("name", e.target.value);
+                }}
+              />
             </td>
             <td>
-              <input type="text" name="url" placeholder="Enter Url" required disabled={!!props.team.id} />
+              <input
+                type="text"
+                name="url"
+                value={props.team.id ? "" : props.team.url}
+                placeholder="Enter url"
+                required
+                disabled={!!props.team.id}
+                onChange={e => {
+                  props.inputChange("url", e.target.value);
+                }}
+              />
             </td>
             <td>
               <button type="submit" className="action-btn" disabled={!!props.team.id}>
@@ -244,7 +284,7 @@ export class TeamsTableWrapper extends React.Component<WrapperProps, State> {
   componentDidMount(): void {
     this.loadTeams();
   }
-  async loadTeams() {
+  private async loadTeams() {
     const teams = await loadTeamsRequest();
     console.info("loaded", teams);
     this.setState({
@@ -252,7 +292,24 @@ export class TeamsTableWrapper extends React.Component<WrapperProps, State> {
       teams: teams
     });
   }
-
+  async save() {
+    const team = this.state.team;
+    this.setState({ loading: true });
+    console.warn("save", team);
+    let done: boolean;
+    if (team.id) {
+      const { success } = await updateTeamRequest(team);
+      done = success;
+    } else {
+      console.warn("create");
+      const { id, success } = await createTeamRequest(team);
+      done = success;
+    }
+    if (done) {
+      await this.loadTeams();
+      this.setState({ team: getEmptyTeam() });
+    }
+  }
   render() {
     console.warn("render", this.state.team);
     return (
@@ -282,14 +339,8 @@ export class TeamsTableWrapper extends React.Component<WrapperProps, State> {
             };
           });
         }}
-        save={async () => {
-          console.warn("save", this.state.team);
-          const { success } = await updateTeamRequest(this.state.team);
-          if (success) {
-            this.setState({ loading: true });
-            await this.loadTeams();
-            this.setState({ team: getEmptyTeam() });
-          }
+        save={() => {
+          this.save();
         }}
         reset={() => this.setState({ team: getEmptyTeam() })}
       />
