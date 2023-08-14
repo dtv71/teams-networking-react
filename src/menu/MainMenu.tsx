@@ -3,7 +3,7 @@ import "./menu.css";
 type Page = "home" | "todos" | "teams";
 export function MainMenu() {
   //const active: string = "teams";
-  const [active, setActive] = useState<Page>("home");
+  const [active, setActive] = useState<Page>("teams");
   const elements = [
     { text: "Home", name: "home" },
     { text: "Todos", name: "todos" },
