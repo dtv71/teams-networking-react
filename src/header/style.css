@@ -27,4 +27,9 @@ header h1 {
   margin: 5px 0;
   font-weight: 100;
   font-size: 1.2em;
+  font-weight: 300;
+}
+.app-icon {
+  display: inline-block;
+  min-width: 30px;
 }
