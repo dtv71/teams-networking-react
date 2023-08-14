@@ -15,8 +15,6 @@ export function TeamsPage() {
           placeholder="Search..."
           onChange={e => {
             setSearch(e.target.value);
-            //search = e.target.value;
-            //console.log("search", search);
           }}
         />
         <label htmlFor="searchTeams">🔎</label>
@@ -32,14 +30,18 @@ export function HomePage() {
 export function TodosPage() {
   return <div>Todos..</div>;
 }
-export function ContentWrapper() {
+type Props = {
+  activePage: Page;
+};
+
+export function ContentWrapper(props: Props) {
   /* cazuri care se pot folosi
   {activePage === "home" ? <HomePage /> : null}
   {activePage === "todos" && <TodosPage />}
   */
-  const activePage: Page = "teams" as Page;
-
-  return <div id="main">{getActivePage(activePage)}</div>;
+  //const activePage: Page = "teams" as Page;
+  const page = getActivePage(props.activePage);
+  return <div id="main">{page}</div>;
 }
 
 function getActivePage(activePage: Page) {
