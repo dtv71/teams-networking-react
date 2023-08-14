@@ -5,6 +5,7 @@ let loadUrl = "http://localhost:3000/teams-json";
 if (window.location.host === "dtv71.github.io") {
   loadUrl = "teams.json";
 }
+console.log(loadUrl)
 export function loadTeamsRequest(): Promise<Team[]> {
   return fetch(loadUrl, {
     method: "GET",

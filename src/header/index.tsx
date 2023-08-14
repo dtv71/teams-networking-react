@@ -1,4 +1,5 @@
 import logo from "../images/network-team-icon.png";
+import { MainMenu } from "../menu/MainMenu";
 import "./style.css";
 
 export default function AppHeader() {
@@ -13,6 +14,7 @@ export default function AppHeader() {
           <h2 id="job-title">CRUD operations (CREATE, READ, UPDATE, DELETE)</h2>
         </div>
       </div>
+      <MainMenu />
     </header>
   );
 }

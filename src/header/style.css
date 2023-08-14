@@ -1,7 +1,5 @@
 header {
   padding: 0px;
-  display: flex;
-  flex-direction: row;
   background-image: url(../images/th.png);
 }
 

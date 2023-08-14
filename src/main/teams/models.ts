@@ -4,4 +4,5 @@ export type Team = {
     members: string;
     name: string;
     url: string;
+    createdBy?: string;
 };
