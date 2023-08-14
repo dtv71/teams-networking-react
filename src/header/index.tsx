@@ -1,3 +1,4 @@
+import { PackageId } from "typescript";
 import logo from "../images/network-team-icon.png";
 import { Page } from "../main/models";
 import { MainMenu } from "../menu/MainMenu";
@@ -6,7 +7,10 @@ import "./style.css";
 type Props = {
   activePage: Page;
 };
-export default function AppHeader(props: Props) {
+type Actions = {
+  setActive(active: Page): void;
+};
+export default function AppHeader(props: Props & Actions) {
   return (
     <header>
       <div id="header-wrapper">
@@ -20,7 +24,7 @@ export default function AppHeader(props: Props) {
           </h2>
         </div>
       </div>
-      <MainMenu activePage={props.activePage} />
+      <MainMenu activePage={props.activePage} setActive={props.setActive} />
     </header>
   );
 }
